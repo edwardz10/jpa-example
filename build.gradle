@@ -1,0 +1,38 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'teams'
+	version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter')
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.1'
+}
